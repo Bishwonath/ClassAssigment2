@@ -9,7 +9,7 @@ class DashboardView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Dashboard'),
+        title: const Text('BISHWONATH ARYAL CLASS_as-2'),
         centerTitle: true,
       ),
       body: GridView(
@@ -46,6 +46,20 @@ class DashboardView extends StatelessWidget {
                 children: const <Widget>[
                   Icon(Icons.circle, size: 48),
                   Text('Circle Area Calculator'),
+                ],
+              ),
+            ),
+          ),
+          Card(
+            child: InkWell(
+              onTap: () {
+                context.read<DashboardCubit>().openCalculatorView(context);
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: const <Widget>[
+                  Icon(Icons.circle, size: 48),
+                  Text('Calculator'),
                 ],
               ),
             ),

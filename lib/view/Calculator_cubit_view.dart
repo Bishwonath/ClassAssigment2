@@ -1,26 +1,6 @@
 import 'package:class_assignment2/cubit/Calculator.cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Calculator',
-      home: BlocProvider(
-        create: (_) => CalculatorCubit(),
-        child: const CalculatorView(),
-      ),
-    );
-  }
-}
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalculatorView extends StatelessWidget {
   const CalculatorView({super.key});
@@ -40,6 +20,7 @@ class CalculatorView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            // First input field
             TextField(
               controller: num1Controller,
               decoration: const InputDecoration(
@@ -49,6 +30,8 @@ class CalculatorView extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 16),
+
+            // Second input field
             TextField(
               controller: num2Controller,
               decoration: const InputDecoration(
@@ -58,6 +41,8 @@ class CalculatorView extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 24),
+
+            // BlocBuilder to listen for changes in result
             BlocBuilder<CalculatorCubit, double>(
               builder: (context, result) {
                 return Text(
@@ -70,6 +55,8 @@ class CalculatorView extends StatelessWidget {
               },
             ),
             const SizedBox(height: 24),
+
+            // Button actions
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -106,7 +93,8 @@ class CalculatorView extends StatelessWidget {
                       context.read<CalculatorCubit>().divide(num1, num2);
                     } else {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Division by zero is not allowed!')),
+                        const SnackBar(
+                            content: Text('Division by zero is not allowed!')),
                       );
                     }
                   },

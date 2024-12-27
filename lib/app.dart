@@ -1,3 +1,5 @@
+import 'package:class_assignment2/cubit/Calculator.cubit.dart';
+import 'package:class_assignment2/cubit/Cirlcle_cubit.dart';
 import 'package:class_assignment2/cubit/Simpleinterest_cubit.dart';
 import 'package:class_assignment2/cubit/dashboard_cubit.dart';
 import 'package:class_assignment2/view/Dashboard_cubit.dart';
@@ -19,7 +21,8 @@ class App extends StatelessWidget {
 
         // Other cubits can be added here if necessary, but avoid duplicates
         // For example:
-        // BlocProvider(create: (context) => CircleAreaCubit()),
+        BlocProvider(create: (context) => CircleAreaCubit()),
+        BlocProvider(create: (context) => CalculatorCubit()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
