@@ -1,8 +1,8 @@
-import 'package:class_assignment2/cubit/Cirlcle_cubit.dart';
-import 'package:class_assignment2/view/Dashboard_cubit.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart';
+import 'package:class_assignment2/cubit/Simpleinterest_cubit.dart';
 import 'package:class_assignment2/cubit/dashboard_cubit.dart';
+import 'package:class_assignment2/view/Dashboard_cubit.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class App extends StatelessWidget {
   const App({super.key});
@@ -11,16 +11,20 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        // Only the necessary cubit for Dashboard
-        BlocProvider(create: (context) => DashboardCubit()), 
-         BlocProvider(create: (context) => CircleAreaCubit()),
-          BlocProvider(create: (context) => DashboardCubit()),
-           BlocProvider(create: (context) => DashboardCubit()),
+        // Provide DashboardCubit only once
+        BlocProvider(create: (context) => DashboardCubit()),
+
+        // Provide the necessary cubit for SimpleInterestCalculator
+        BlocProvider(create: (context) => SimpleInterestCubit()),
+
+        // Other cubits can be added here if necessary, but avoid duplicates
+        // For example:
+        // BlocProvider(create: (context) => CircleAreaCubit()),
       ],
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: "Flutter Bloc",
-        home: DashboardView(),  // The dashboard will be the initial screen
+        title: "Flutter Bloc Example",
+        home: DashboardView(),
       ),
     );
   }

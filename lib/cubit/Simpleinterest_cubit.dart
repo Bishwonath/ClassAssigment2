@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SimpleInterestCubit extends Cubit<String> {
   SimpleInterestCubit() : super("Enter values to calculate Simple Interest");
+  
 
   void calculateInterest(double principal, double rate, double time) {
     if (principal <= 0 || rate <= 0 || time <= 0) {
