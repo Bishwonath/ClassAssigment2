@@ -1,5 +1,6 @@
+import 'package:class_assignment2/cubit/Calculator.cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,17 +13,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Arithmetic Cubit',
+      title: 'Calculator',
       home: BlocProvider(
-        create: (_) => ArithmeticCubit(),
-        child: const ArithmeticCubitView(),
+        create: (_) => CalculatorCubit(),
+        child: const CalculatorView(),
       ),
     );
   }
 }
 
-class ArithmeticCubitView extends StatelessWidget {
-  const ArithmeticCubitView({super.key});
+class CalculatorView extends StatelessWidget {
+  const CalculatorView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class ArithmeticCubitView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Arithmetic Cubit'),
+        title: const Text('Calculator'),
         centerTitle: true,
       ),
       body: Padding(
@@ -57,7 +58,7 @@ class ArithmeticCubitView extends StatelessWidget {
               keyboardType: TextInputType.number,
             ),
             const SizedBox(height: 24),
-            BlocBuilder<ArithmeticCubit, int>(
+            BlocBuilder<CalculatorCubit, double>(
               builder: (context, result) {
                 return Text(
                   'Result: $result',
@@ -75,27 +76,49 @@ class ArithmeticCubitView extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    final num1 = int.tryParse(num1Controller.text) ?? 0;
-                    final num2 = int.tryParse(num2Controller.text) ?? 0;
-                    context.read<ArithmeticCubit>().add(num1, num2);
+                    final num1 = double.tryParse(num1Controller.text) ?? 0;
+                    final num2 = double.tryParse(num2Controller.text) ?? 0;
+                    context.read<CalculatorCubit>().add(num1, num2);
                   },
                   child: const Text('Add'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    final num1 = int.tryParse(num1Controller.text) ?? 0;
-                    final num2 = int.tryParse(num2Controller.text) ?? 0;
-                    context.read<ArithmeticCubit>().subtract(num1, num2);
+                    final num1 = double.tryParse(num1Controller.text) ?? 0;
+                    final num2 = double.tryParse(num2Controller.text) ?? 0;
+                    context.read<CalculatorCubit>().subtract(num1, num2);
                   },
                   child: const Text('Subtract'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    final num1 = int.tryParse(num1Controller.text) ?? 0;
-                    final num2 = int.tryParse(num2Controller.text) ?? 0;
-                    context.read<ArithmeticCubit>().multiply(num1, num2);
+                    final num1 = double.tryParse(num1Controller.text) ?? 0;
+                    final num2 = double.tryParse(num2Controller.text) ?? 0;
+                    context.read<CalculatorCubit>().multiply(num1, num2);
                   },
                   child: const Text('Multiply'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    final num1 = double.tryParse(num1Controller.text) ?? 0;
+                    final num2 = double.tryParse(num2Controller.text) ?? 0;
+                    if (num2 != 0) {
+                      context.read<CalculatorCubit>().divide(num1, num2);
+                    } else {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Division by zero is not allowed!')),
+                      );
+                    }
+                  },
+                  child: const Text('Divide'),
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    context.read<CalculatorCubit>().reset();
+                    num1Controller.clear();
+                    num2Controller.clear();
+                  },
+                  child: const Text('Reset'),
                 ),
               ],
             ),

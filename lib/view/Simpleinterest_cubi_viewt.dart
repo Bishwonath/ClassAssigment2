@@ -1,6 +1,6 @@
 import 'package:class_assignment2/cubit/Simpleinterest_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart'
+import 'package:flutter/material.dart';
 
 
 class SimpleInterestCalculator extends StatelessWidget {

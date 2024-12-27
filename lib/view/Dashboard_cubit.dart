@@ -1,7 +1,6 @@
+import 'package:class_assignment2/cubit/dashboard_cubit.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter/material.dart'
-
-
 
 class DashboardView extends StatelessWidget {
   const DashboardView({super.key});
@@ -24,13 +23,15 @@ class DashboardView extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                context.read<DashboardCubit>().openCounterView(context);
+                context
+                    .read<DashboardCubit>()
+                    .openSimpleInterestCalculatorView(context);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.add, size: 48),
-                  Text('Counter Cubit'),
+                  Icon(Icons.monetization_on, size: 48),
+                  Text('Simple Interest Calculator'),
                 ],
               ),
             ),
@@ -38,27 +39,13 @@ class DashboardView extends StatelessWidget {
           Card(
             child: InkWell(
               onTap: () {
-                context.read<DashboardCubit>().openArithimeticView(context);
+                context.read<DashboardCubit>().openCircleAreaView(context);
               },
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const <Widget>[
-                  Icon(Icons.calculate, size: 48),
-                  Text('Arithmetic Cubit'),
-                ],
-              ),
-            ),
-          ),
-          Card(
-            child: InkWell(
-              onTap: () {
-                context.read<DashboardCubit>().openStudentView(context);
-              },
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const <Widget>[
-                  Icon(Icons.person, size: 48),
-                  Text('Student Cubit'),
+                  Icon(Icons.circle, size: 48),
+                  Text('Circle Area Calculator'),
                 ],
               ),
             ),

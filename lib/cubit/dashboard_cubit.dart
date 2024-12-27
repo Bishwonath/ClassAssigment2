@@ -1,48 +1,41 @@
-
-import 'package:flutter/material.dart';
+import 'package:class_assignment2/view/AreaofCircle_cubit_view.dart';
+import 'package:class_assignment2/view/Calculator_cubit_view.dart';
+import 'package:class_assignment2/view/Simpleinterest_cubi_viewt.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:flutter/material.dart';
 
 class DashboardCubit extends Cubit<void> {
-  final CounterCubit _counterCubit;
-  final ArithmeticCubit _arithmeticCubit;
-  final StudentCubit _studentCubit;
+  DashboardCubit() : super(null);
 
-  DashboardCubit(
-    this._counterCubit,
-    this._arithmeticCubit,
-    this._studentCubit,
-  ) : super(null);
-
-  void openCounterView(BuildContext context) {
+  // Method to open Simple Interest Calculator
+  void openSimpleInterestCalculatorView(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-                  value: _counterCubit,
-                  child: const CounterCubitView(),
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (_) => SimpleInterestCalculator(),
+      ),
+    );
   }
 
-  void openArithimeticView(BuildContext context) {
+  // Method to open Circle Area Calculator
+  void openCircleAreaView(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-                  value: _arithmeticCubit,
-                  child: const ArithmeticCubitView(),
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (_) => const CircleAreaView(),
+      ),
+    );
   }
 
-  void openStudentView(BuildContext context) {
+  // Method to open Calculator View
+  void openCalculatorView(BuildContext context) {
     Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (_) => BlocProvider.value(
-                  value: _studentCubit,
-                  child: StudentCubitView(),
-                )));
+      context,
+      MaterialPageRoute(
+        builder: (_) => const CalculatorView(),
+      ),
+    );
   }
 
-  void openArithmeticCubitView(BuildContext context) {}
 }
+
